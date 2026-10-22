@@ -5,8 +5,8 @@ This is infrastructure only. The initial site is deliberately blank, with no app
 ## Publish and distribute
 
 1. Review the files, then run `npm ci`, `npm run lint`, and `npm run build`.
-2. Commit and push to `main` in [eli8527/psam2120-template](https://github.com/eli8527/psam2120-template) after the owner authorizes publication.
-3. In **Settings → General**, enable **Template repository**. It was already enabled when this repository was inspected.
+2. Commit and push to `main` in [eli8527/psam2120-template](https://github.com/eli8527/psam2120-template).
+3. In **Settings → General**, enable **Template repository**.
 4. In **Settings → Pages**, select **GitHub Actions** as the source. Run or rerun the included workflow and verify the published URL.
 5. Share the repository link with your 15–20 students. Each student uses **Use this template**, clones their own copy, and enables Pages independently. Collect both their repository and public site URLs.
 
@@ -20,8 +20,8 @@ This is infrastructure only. The initial site is deliberately blank, with no app
 
 ## Keep it small
 
-React, TypeScript, and Tailwind tooling are ready for students to create their own application. Keep the empty HTML entry; do not add starter screens or demo components. Students add their own React module entry and stylesheet when implementing their designs.
+Keep the empty HTML entry. Students add their own React entry and stylesheet when implementing their designs.
 
-TypeScript 6.0.3 is pinned to the stable version supported by the installed `typescript-eslint` parser. Upgrade those together after compatibility changes. The lockfile keeps installations reproducible.
+Update TypeScript and `typescript-eslint` together so their supported versions stay compatible. Commit the lockfile.
 
 For problems, identify the failed stage: installation, local server, Git push, Actions build, or Pages deployment. Check the exact error and README troubleshooting. A local build does not prove public deployment. Template updates do not automatically update existing student copies.
