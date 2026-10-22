@@ -31,7 +31,7 @@ jobs:
           cache: npm
       - name: Install dependencies
         timeout-minutes: 5
-        run: npm ci --loglevel=verbose
+        run: npm ci --no-audit --no-fund --loglevel=verbose
       - name: Lint
         run: npm run lint
       - name: Configure Pages
