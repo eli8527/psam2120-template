@@ -9,3 +9,7 @@
 - Run `npm run lint` and `npm run build`. Explain changes, checks, and limitations honestly.
 - Keep the lockfile consistent. Never commit dependencies, build output, credentials, or environment files.
 - Help students inspect, understand, and critique generated code.
+
+## Modern Web Guidance
+
+For HTML, CSS, browser APIs, accessibility, and performance work, follow the project-local [Modern Web Guidance skill](.agents/skills/modern-web-guidance/SKILL.md). Search for the relevant pattern before implementing it. This project's browser support target is **Baseline Widely available**; use progressive enhancement and appropriate fallbacks for newer features.

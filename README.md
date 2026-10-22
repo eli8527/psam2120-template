@@ -60,6 +60,12 @@ For Claude Code, use Figma's official plugin or, with the standalone CLI install
 
 Start with one frame: inspect components and tokens, identify missing interactions and mobile behavior, agree on a plan, implement, run locally, compare with Figma, iterate, then deploy. Visual fidelity, working functionality, and readable accessible code are separate checks.
 
+## Modern Web Guidance
+
+Google Chrome's [Modern Web Guidance](https://developer.chrome.com/docs/modern-web-guidance) skill is included in `.agents/skills/modern-web-guidance/`. Codex can discover it as a project skill; `CLAUDE.md` imports the same file for Claude Code. It searches for web platform guidance on demand, with **Baseline Widely available** as the browser support target. No application dependency is added.
+
+The skill is copied unchanged from [GoogleChrome/modern-web-guidance](https://github.com/GoogleChrome/modern-web-guidance/tree/65e7edd67e77420eaf02c5df00fdc0521417d809/skills/modern-web-guidance), with its Apache 2.0 license alongside it. It will be available to agents on their next turn.
+
 ## Troubleshooting
 
 - Missing `npm` or `git`: install the tool and restart VS Code. Use Node 24 LTS.
