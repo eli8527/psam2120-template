@@ -5,61 +5,37 @@ on:
     branches: [main]
   workflow_dispatch:
 
-# Only the deployment job can publish Pages.
 permissions:
   contents: read
+  pages: write
+  id-token: write
 
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pages: read # configure-pages reads the repository's Pages settings.
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v7
-        with:
-          persist-credentials: false
-      - name: Set up Node.js
-        uses: actions/setup-node@v7
-        with:
-          node-version-file: .nvmrc
-          cache: npm
-      - name: Install dependencies
-        timeout-minutes: 5
-        run: npm ci --no-audit --no-fund --loglevel=verbose
-      - name: Lint
-        run: npm run lint
-      - name: Configure Pages
-        uses: actions/configure-pages@v6
-      - name: Build with the repository's Pages path
-        run: |
-          owner="${GITHUB_REPOSITORY%/*}"
-          repo="${GITHUB_REPOSITORY#*/}"
-          base="/$repo/"
-          if [[ "${repo,,}" == "${owner,,}.github.io" ]]; then
-            base="/"
-          fi
-          npm run build -- --base="$base"
-      - name: Upload website
-        uses: actions/upload-pages-artifact@v5
-        with:
-          path: dist
-
   deploy:
-    needs: build
     runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
+    timeout-minutes: 10
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy website
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - uses: actions/configure-pages@v6
+        id: pages
+      - run: npm ci --no-audit --no-fund
+      - run: npm run lint
+      - run: npm run build -- --base="$PAGES_BASE_PATH/"
+        env:
+          PAGES_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+      - uses: actions/deploy-pages@v5
         id: deployment
-        uses: actions/deploy-pages@v5

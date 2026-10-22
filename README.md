@@ -44,11 +44,11 @@ git push origin main
 
 If Git asks for your identity, set `git config user.name "Your Name"` and `git config user.email "Your GitHub no-reply email"`. Find the email in [GitHub settings](https://github.com/settings/emails). Use the editor's browser sign-in for authentication.
 
-In **your repository → Settings → Pages → Build and deployment → Source**, select **GitHub Actions** once. Pushes to `main` deploy automatically. You can also run **Actions → Deploy to GitHub Pages → Run workflow**. Wait for both jobs to succeed and open the link in **Settings → Pages**. If the initial run failed before enabling Pages, rerun it.
+In **your repository → Settings → Pages → Build and deployment → Source**, select **GitHub Actions** once. Pushes to `main` deploy automatically. You can also run **Actions → Deploy to GitHub Pages → Run workflow**. Wait for the workflow to succeed and open the link in **Settings → Pages**. If the initial run failed before enabling Pages, rerun it.
 
-The default URL is `https://USERNAME.github.io/REPOSITORY/`, or `https://USERNAME.github.io/` for an owner-matching `USERNAME.github.io` repository. The workflow calculates Vite's base automatically; local development stays at `/`. No extra tokens or secrets are needed.
+The default URL is `https://USERNAME.github.io/REPOSITORY/`, or `https://USERNAME.github.io/` for an owner-matching `USERNAME.github.io` repository. The workflow uses GitHub Pages metadata to set Vite's base automatically; local development stays at `/`. No extra tokens or secrets are needed.
 
-When adding images, prefer Vite imports. Public files should use `import.meta.env.BASE_URL` in code or `%BASE_URL%` in HTML. Use in-page anchors or hash navigation; history routing can fail on Pages refresh. Custom domains require reviewing the base path. See [Vite's deployment guide](https://vite.dev/guide/static-deploy.html).
+When adding images, prefer Vite imports. Public files should use `import.meta.env.BASE_URL` in code or `%BASE_URL%` in HTML. Use in-page anchors or hash navigation; history routing can fail on Pages refresh. See [Vite's deployment guide](https://vite.dev/guide/static-deploy.html).
 
 ## Figma and AI agents
 
